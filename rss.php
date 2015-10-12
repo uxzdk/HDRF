@@ -33,7 +33,7 @@ $passkey = "xxxxxxx";
 // Use Curl to download RSS feed from NextGen 
 $curl = curl_init();
 curl_setopt_array($curl, Array(
-	CURLOPT_URL            => "http://nxgn.org/rss.php?feed=dl&cat=$category&passkey=$passkey&lim=1&search=$search",
+	CURLOPT_URL            => "http://nxgn.info/rss.php?feed=dl&cat=$category&passkey=$passkey&lim=1&search=$search",
 	CURLOPT_USERAGENT      => 'spider',
 	CURLOPT_TIMEOUT        => 120,
 	CURLOPT_CONNECTTIMEOUT => 30,
