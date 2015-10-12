@@ -1,1 +1,1 @@
-// Empty index
+// Empty index file
