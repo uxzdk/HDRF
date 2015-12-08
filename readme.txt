@@ -1,4 +1,4 @@
-Requirements Curl, PHP and of course a NextGen user ;)
+Requirements Curl, PHP and of course a HoundDawgs user ;)
 
 Update API password xxxxxx, and passkey xxxxxx with your own data.
 
