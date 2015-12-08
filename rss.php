@@ -1,23 +1,19 @@
 <?php
-########################################################################################
-################# NextGen RSS feed categories, last update 10/12/2015 ##################
-########################################################################################
-####  47 3D - 39 Android - 18 Appz(iOS) - 36 Appz(MAC) - 1 Appz(PC) - 31 TV-HD	     ###
-####  44 BluRay - 23 Boxset(Dansk) - 7 Boxset(DVD-R) - 21 Boxset(SD) - 12 Kids	     ###
-####  24 Boxset(TV) - 17 Danish DVD-R - 6 DVD-R - 16 DVD9 - 10 Games(Console)        ###
-####  2 Games(PC) - 30 Games(PS3) - 34 Games(Wii) - 35 Games(XBOX) - 41 Musik HD     ###
-####  42 NG Serier DVDR - 8 Books - 11 MiSC  - 40 MP3 PACK  - 13 Music/Video - 9 HD  ###
-####  3 Musik SD - 25 NG Film DVDR - 38 NG Film HD  - 22 NG SD - 42 NG Serier DVDR   ###
-####  46 NG Serier HDTV - 26 NG Serier WEB-DL - 28 NG WWW DVDR - 43 NG WWW HD	     ###
-####  5 SD - 4 TV - 45 TV-Misc - 33 WWW Subs - 14 XXX - 37 Audio Books	             ###
-########################################################################################
-#############################PHP Script by NextGen user UXZ#############################
-####################################Sharing is Caring###################################
-########################################################################################
+############################################################################################################
+########################### HoundDawgs RSS feed categories, last update 12/08/2015 #########################
+############################################################################################################
+68 3D Appz | 80 Android | 6 Appz and Div | 71 Appz and iOS | 70 Appz and Mac | 69 Appz and PC
+72 Audio Books | 82 BluRay and REMUX | 78 Books | 87 Cover | 90 DK DVDr | 89 DK HD | 91 DK SD
+92 DK TV HD | 93 DK TV SD | 84 Film Boxset | 81 Film CAM and TS | 60 Film DVDr 59 Film HD
+73 Film SD | 77 Film Tablet | 61 Musik | 76 Musik Video and Koncert | 75 Spil (Konsol) | 79 Spil (Mac)
+64 Spil (PC) | 85 TV Boxset) | 58 TV DVDr | 57 TV HD | 74 TV SD | 94 TV Tablet | 83 E Learning | 67 XXX	
+############################################################################################################
+#####################################PHP Script by HoundDawgs user UXZ######################################
+##############################################Sharing is Caring#############################################
+############################################################################################################
 
-
-// Check if API is right
-if ($_GET['api'] == "xxxxxx") {
+// Check if API is right, rember to change
+if ($_GET['api'] == "xxxxx") {
 
 // Set Content and version
 header("Content-Type: text/xml;charset=iso-8859-1"); 
@@ -27,13 +23,19 @@ echo "<rss version=\"2.0\"><channel>";
 // Main code start
 function search($category, $search) {
 
-// NextGen passkey
-$passkey = "xxxxxxx";
+// HoundDawgs user info
+$user = "xxxxx";
+$auth = "xxxxx";
+$passkey = "xxxxx";
+$authkey = "xxxxx";
 
-// Use Curl to download RSS feed from NextGen 
+// Only DL freeleech on/off
+$freeleech = "on";
+
+// Use Curl to download RSS feed from HoundDawgs 
 $curl = curl_init();
 curl_setopt_array($curl, Array(
-	CURLOPT_URL            => "http://nxtgn.biz/rss.php?feed=dl&cat=$category&passkey=$passkey&lim=1&search=$search",
+	CURLOPT_URL            => "http://hounddawgs.org/feeds.php?feed=torrents_all&user=$user&auth=$auth&passkey=$passkey&authkey=$authkey&freeleech=$freeleech&filter_cat[$category]&searchstr=$search",
 	CURLOPT_USERAGENT      => 'spider',
 	CURLOPT_TIMEOUT        => 120,
 	CURLOPT_CONNECTTIMEOUT => 30,
@@ -46,7 +48,7 @@ curl_close($curl);
 // Convert to object and into small string
 $feed  = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
   foreach($feed->channel->item as $item){
-	  
+
 // Echo new RSS feed
 echo "<item>";
 echo "<title>".$item->title."</title>";
@@ -54,7 +56,7 @@ echo "<link>".htmlentities($item->link)."</link>";
 echo "<description>".$item->description."</description>";
 echo "</item>";
 break;
-}	
+}
 }
 
 //search start
@@ -62,13 +64,9 @@ break;
 //search("category", "search name");
 
 
-
-search("46", "Marvels.Agents.of.S.H.I.E.L.D.DKSubs.720p");
-search("46", "Limitless.Custom.DKSubs.720p");
-
-
-
-
+search("57", "The.Flash");
+search("57", "Limitless");
+search("57", "Marvels.Agents.of.S.H.I.E.L.D.");
 
 
 
@@ -80,5 +78,4 @@ echo "</channel></rss>";
 } else {
     echo "Bad API";
 }
-
 ?>
